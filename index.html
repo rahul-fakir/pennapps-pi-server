@@ -1,0 +1,72 @@
+<!doctype html>
+
+<html>
+<head>
+  <title>PennApps Sign In</title>
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+  <nav>
+    <div class="nav-wrapper">
+      <a class="brand-logo center">PennApps Sign In</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+      </ul>
+    </div>
+  </nav>
+  <br/>         
+  <div class="container">
+    <div class="row">
+      <div class="input-field col s12 m6 l6">
+        <i class="material-icons prefix">business</i>
+        <input id="schoolName" type="text" class="validate">
+        <label for="schoolName">School Name</label>
+      </div>
+      <div class="input-field col s12 m6 l6">
+        <i class="material-icons prefix">account_circle</i>
+        <input id="studentName" type="text" class="validate">
+        <label for="studentName">Student Name</label>
+      </div>
+      <a onClick="handleSubmit()" class="col s12 m12 l12 waves-effect waves-light btn">Sign In</a>
+    </div>
+  </div>
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+  <script>
+
+    function handleSubmit() {
+      schoolName = document.getElementById('schoolName').value
+      studentName = document.getElementById('studentName').value
+      
+      if (schoolName.length * studentName.length === 0) {
+        M.toast({html: 'School Name AND Student Name Required'})
+        return
+      }
+
+      $.ajax({
+        url: 'https://fd2252f5f21c625eda0807191d1b8049.resindevice.io/signin',
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify({
+          schoolName: schoolName,
+          studentName: studentName
+        }),
+        success: function( data ){
+          M.toast({html: `${studentName} has signed in`})
+        },
+        error: function( error ){
+          M.toast({html: `Something went wrong`})
+        }
+      });
+    }
+
+  </script>
+</body>
+</html>
+
+
+
+    
+            
