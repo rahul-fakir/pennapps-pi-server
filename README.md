@@ -1,5 +1,5 @@
 # pennapps-pi-server
-PennApps Iot Pi Server
+PennApps IoT Pi Server
 
 ## Running Locally
 ```
